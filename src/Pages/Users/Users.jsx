@@ -6,7 +6,7 @@ const Users = () => {
     const {user} = useAuth()
     const allUsers = useLoaderData();
     const users = allUsers.usersData;
-    const userEmail = users?.find(user => user?.userEmail);
+
 
 
 
