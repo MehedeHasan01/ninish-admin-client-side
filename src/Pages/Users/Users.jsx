@@ -1,7 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
+import useAuth from "../../Hooks/useAuth";
 
 const Users = () => {
+    const {user} = useAuth()
     const allUsers = useLoaderData();
     const users = allUsers.usersData;
     const userEmail = users?.find(user => user?.userEmail);
@@ -10,7 +12,7 @@ const Users = () => {
 
     // handle users Status put (update) function
     const handleUserStatus =(status)=>{
-        fetch(`http://localhost:5000/user/${userEmail?.userEmail}`,{
+        fetch(`http://localhost:5000/user/${user?.email}`,{
             method: "PUT",
             headers:{
                 'Content-Type': 'application/json'
