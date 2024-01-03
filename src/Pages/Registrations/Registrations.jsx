@@ -1,19 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
+import useAuth from "../../Hooks/useAuth";
 
 const Registrations = () => {
+    const {user} = useAuth()
     const allRegistrations = useLoaderData()
     const registrations = allRegistrations?.registrationsData;
-
-    const registrationsEmail = registrations?.find(registration => registration?.userEmail);
-
 
 
 
 
     // handle users Status put (update) function
     const handleRegistrationStatus =(status)=>{
-        fetch(`http://localhost:5000/registration/${registrationsEmail?.userEmail}`,{
+        fetch(`http://localhost:5000/registration/${user?.email}`,{
             method: "PUT",
             headers:{
                 'Content-Type': 'application/json'
